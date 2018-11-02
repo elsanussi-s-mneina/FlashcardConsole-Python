@@ -7,15 +7,19 @@ def main() -> None:
     print('Console Application for Memorizing Flashcards')
     response : Optional[str] = None
     while not response == 'x':
+        print()
         print('What do you want to do?')
         print('[n] Create a new set of flashcards.')
         print('[l] load an existing set of flashcards.')
+        print('[a] about the program')
         print('[x] exit the program.')
         response = input('>')
         if response == 'n':
             create_new_flashcard_set()
         elif response == 'l':
             load_flashcard_set()
+        elif response == 'a':
+            about_program()
 
     print('Program terminated normally.')
 
@@ -48,5 +52,9 @@ def create_new_flashcard_set() -> None:
 
 def load_flashcard_set() -> None:
     print('loading flashcard set...')
+
+
+def about_program() -> None:
+    print('Programmed by Elsanussi Mneina, November 2, 2018')
 
 main()
