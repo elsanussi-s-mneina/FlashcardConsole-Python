@@ -1,6 +1,10 @@
+from flashcard import Flashcard
+from typing import List, Optional
+
+
 def main() -> None:
     print('Console Application for Memorizing Flashcards')
-    response = None
+    response : Optional[str] = None
     while not response == 'x':
         print('What do you want to do?')
         print('[n] Create a new set of flashcards.')
@@ -18,7 +22,7 @@ def main() -> None:
 def create_new_flashcard_set() -> None:
     print('Creating a new flashcard set...')
     set_name = input('What do you want to name the new flashcard set?\n')
-    flashcards = []
+    flashcards : List[Flashcard] = []
     print('Creating a new flashcard set named', set_name)
     while True:
         print('What do you want to do?')
@@ -30,10 +34,13 @@ def create_new_flashcard_set() -> None:
             print('Adding a flashcard...')
             front_side = input('Type the text that goes on the front side:\n>')
             back_side = input('Type the text that goes on the back side:\n>')
-            flashcards.append((front_side, back_side))
+            card = Flashcard()
+            card.set_front_side(front_side)
+            card.set_back_side(back_side)
+            flashcards.append(card)
         elif option == 'v':
             for card in flashcards:
-                print(card)
+                print(card.get_both_sides())
         elif option == 'x':
             break
 
