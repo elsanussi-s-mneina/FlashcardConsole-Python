@@ -1,4 +1,5 @@
 from flashcard import Flashcard
+from flashcard_set import FlashcardSet
 from typing import List, Optional
 
 
@@ -22,7 +23,7 @@ def main() -> None:
 def create_new_flashcard_set() -> None:
     print('Creating a new flashcard set...')
     set_name = input('What do you want to name the new flashcard set?\n')
-    flashcards : List[Flashcard] = []
+    flashcards = FlashcardSet()
     print('Creating a new flashcard set named', set_name)
     while True:
         print('What do you want to do?')
@@ -37,10 +38,10 @@ def create_new_flashcard_set() -> None:
             card = Flashcard()
             card.set_front_side(front_side)
             card.set_back_side(back_side)
-            flashcards.append(card)
+            flashcards.add_flashcard(card)
         elif option == 'v':
-            for card in flashcards:
-                print(card.get_both_sides())
+            list_text = flashcards.list_flashcards()
+            print(list_text)
         elif option == 'x':
             break
 
