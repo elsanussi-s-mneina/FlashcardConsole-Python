@@ -29,10 +29,16 @@ class Flashcard():
         self.front_side = undo_escape_tab_character(parts_of_line[0])
         self.back_side = undo_escape_tab_character(parts_of_line[1])
 
-    def ask_for_front_side(self):
-        print('Give the backside of', self.get_front_side())
+    def ask_for_back_side(self):
+        print('Give the back side of', self.get_front_side())
         attempted_backside = input('>')
         print('Compare your attempt:\nattempt:\t', attempted_backside, '\ncorrect:\t', self.get_back_side())
+        print('Next card.')
+
+    def ask_for_front_side(self):
+        print('Give the front side of', self.get_back_side())
+        attempted_backside = input('>')
+        print('Compare your attempt:\nattempt:\t', attempted_backside, '\ncorrect:\t', self.get_front_side())
         print('Next card.')
 
 

@@ -2,6 +2,9 @@ from typing import List
 from flashcard import Flashcard
 import random
 
+from practice_session import PracticeSession
+from reversed_practice_session import ReversedPracticeSession
+
 
 class FlashcardSet:
     def __init__(self):
@@ -34,14 +37,16 @@ class FlashcardSet:
     def start_quiz(self):
         print('Starting quiz.')
         for card in self.card_list:
+            card.ask_for_back_side()
+
+    def start_quiz_with_reversed_sides(self):
+        print('Starting quiz (reversed: back to front).')
+        for card in self.card_list:
             card.ask_for_front_side()
 
     def start_practice(self):
-        print('Starting practice.')
-        while True:
-            random_index = random.randint(0, len(self.card_list) - 1)
-            card = self.card_list[random_index]
-            card.ask_for_front_side()
-            option = input('([C] Continue) or \n [x] stop practice\n>')
-            if option == 'x':
-                break
+        option = input('[n] Normal (front to back)\n[r] Reversed (back to front)')
+        practice_session = PracticeSession()
+        if option == 'r':
+            practice_session = ReversedPracticeSession()
+        practice_session.start_practice(self.card_list)
