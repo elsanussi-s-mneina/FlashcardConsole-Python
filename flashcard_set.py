@@ -1,5 +1,6 @@
 from typing import List
 from flashcard import Flashcard
+import random
 
 
 class FlashcardSet:
@@ -29,3 +30,18 @@ class FlashcardSet:
                 flashcard = Flashcard()
                 flashcard.read_as_line(line)
                 self.card_list.append(flashcard)
+
+    def start_quiz(self):
+        print('Starting quiz.')
+        for card in self.card_list:
+            card.ask_for_front_side()
+
+    def start_practice(self):
+        print('Starting practice.')
+        while True:
+            random_index = random.randint(0, len(self.card_list) - 1)
+            card = self.card_list[random_index]
+            card.ask_for_front_side()
+            option = input('([C] Continue) or \n [x] stop practice\n>')
+            if option == 'x':
+                break

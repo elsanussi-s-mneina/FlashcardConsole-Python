@@ -43,6 +43,8 @@ def inside_flashcard_set_panel():
         print('What do you want to do?')
         print('[a] Add a flashcard?')
         print('[v] list flashcards?')
+        print('[q] start quiz')
+        print('[p] start practice')
         print('[x] go back to main menu')
         option = input('>')
         if option == 'a':
@@ -56,6 +58,10 @@ def inside_flashcard_set_panel():
         elif option == 'v':
             list_text = flashcards.list_flashcards()
             print(list_text)
+        elif option == 'q':
+            flashcards.start_quiz()
+        elif option == 'p':
+            flashcards.start_practice()
         elif option == 'x':
             break
 

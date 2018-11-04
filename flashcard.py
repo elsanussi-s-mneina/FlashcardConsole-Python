@@ -10,6 +10,12 @@ class Flashcard():
     def set_back_side(self, back_side) -> None:
         self.back_side = back_side
 
+    def get_front_side(self):
+        return self.front_side
+
+    def get_back_side(self):
+        return self.back_side
+
     def get_both_sides(self) -> str:
         return self.front_side + '  |||  ' + self.back_side
 
@@ -20,13 +26,19 @@ class Flashcard():
 
     def read_as_line(self, line) -> None:
         parts_of_line = line.split('\t')
-        self.front_side = unescape_tab_character(parts_of_line[0])
-        self.back_side = unescape_tab_character(parts_of_line[1])
+        self.front_side = undo_escape_tab_character(parts_of_line[0])
+        self.back_side = undo_escape_tab_character(parts_of_line[1])
+
+    def ask_for_front_side(self):
+        print('Give the backside of', self.get_front_side())
+        attempted_backside = input('>')
+        print('Compare your attempt:\nattempt:\t', attempted_backside, '\ncorrect:\t', self.get_back_side())
+        print('Next card.')
 
 
 def escape_tab_character(a_string : str) -> str:
     return a_string.replace('\t', '\\t')
 
 
-def unescape_tab_character(a_string: str) -> str:
+def undo_escape_tab_character(a_string: str) -> str:
     return a_string.replace('\\t', '\t')
