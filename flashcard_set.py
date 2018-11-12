@@ -101,3 +101,6 @@ class FlashcardSet:
         if option == 'r':
             practice_session = ReversedPracticeSession()
         practice_session.start_practice(self.card_list)
+
+    def count_flashcards(self) -> int:
+        return len(self.card_list)

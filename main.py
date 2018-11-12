@@ -41,8 +41,9 @@ def create_new_flashcard_set() -> None:
 def inside_flashcard_set_panel():
     while True:
         print('What do you want to do?')
-        print('[a] Add a flashcard?')
-        print('[v] list flashcards?')
+        print('[a] Add a flashcard')
+        print('[v] list flashcards')
+        print('[c] count flashcards')
         print('[e] edit flashcards')
         print('[q] start quiz')
         print('[p] start practice')
@@ -56,6 +57,8 @@ def inside_flashcard_set_panel():
             card.set_front_side(front_side)
             card.set_back_side(back_side)
             flashcards.add_flashcard(card)
+        elif option == 'c':
+            print('The number of flashcards is:', flashcards.count_flashcards())
         elif option == 'v':
             list_text = flashcards.list_flashcards()
             print(list_text)
@@ -72,7 +75,7 @@ def inside_flashcard_set_panel():
 def load_flashcard_set():
     global flashcards
     print('loading flashcard set...')
-    file_name = input('Choose a file name to load from.')
+    file_name = input('Choose a file name to load from.\n>')
     file = open(file_name, 'r')
     file_contents = file.read()
     flashcards = FlashcardSet()
