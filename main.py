@@ -4,6 +4,9 @@ from typing import List, Optional
 
 flashcards = FlashcardSet()
 
+already_saved: bool = False
+file_name_chosen: Optional[str] = None
+
 
 def main() -> None:
     print('Console Application for Memorizing Flashcards')
@@ -14,6 +17,7 @@ def main() -> None:
         print('[n] Create a new set of flashcards.')
         print('[l] load an existing set of flashcards.')
         print('[s] save the current set of flashcards.')
+        print('[sa] save the current set of flashcards in a different file ')
         print('[a] about the program')
         print('[x] exit the program.')
         response = input('>')
@@ -23,6 +27,8 @@ def main() -> None:
             load_flashcard_set()
         elif response == 's':
             save_flashcard_set(flashcards)
+        elif response == 'sa':
+            save_flashcard_set_as(flashcards)
         elif response == 'a':
             about_program()
 
@@ -74,6 +80,7 @@ def inside_flashcard_set_panel():
 
 def load_flashcard_set():
     global flashcards
+    global file_name_chosen, already_saved
     print('loading flashcard set...')
     file_name = input('Choose a file name to load from.\n>')
     file = open(file_name, 'r')
@@ -82,10 +89,26 @@ def load_flashcard_set():
     flashcards.read_as_file(file_contents)
     print('Done loading file from', file_name)
     inside_flashcard_set_panel()
+    file_name_chosen = file_name
+    already_saved = True
 
 
 def save_flashcard_set(flashcard_set: FlashcardSet) -> None:
+    global file_name_chosen, already_saved
     print('saving flashcard set...')
+    if already_saved:
+        file_name = file_name_chosen
+    else:
+        file_name = input('Choose a file name to save to.')
+    file = open(file_name, 'w')
+    file.write(flashcard_set.print_as_file())
+    print('Done writing file to', file_name)
+    already_saved = True
+    file_name_chosen = file_name
+
+
+def save_flashcard_set_as(flashcard_set: FlashcardSet) -> None:
+    print('saving flashcard set as...')
     file_name = input('Choose a file name to save to.')
     file = open(file_name, 'w')
     file.write(flashcard_set.print_as_file())
