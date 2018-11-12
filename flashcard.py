@@ -10,11 +10,17 @@ class Flashcard():
     def set_back_side(self, back_side) -> None:
         self.back_side = back_side
 
-    def get_front_side(self):
+    def get_front_side(self) -> str:
         return self.front_side
 
-    def get_back_side(self):
+    def set_front_side(self, new_front_side: str) -> None:
+        self.front_side = new_front_side
+
+    def get_back_side(self) -> str:
         return self.back_side
+
+    def set_back_side(self, new_back_side: str) -> None:
+        self.back_side = new_back_side
 
     def get_both_sides(self) -> str:
         return self.front_side + '  |||  ' + self.back_side

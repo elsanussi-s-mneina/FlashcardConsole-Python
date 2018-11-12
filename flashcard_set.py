@@ -13,6 +13,57 @@ class FlashcardSet:
     def add_flashcard(self, flashcard: Flashcard) -> None:
         self.card_list.append(flashcard)
 
+    def edit_flashcards(self) -> None:
+        index = 0
+        while True:
+            if len(self.card_list) == 0:
+                print('please add cards before editing!')
+                print('Exiting editing cards panel...')
+                break;
+            if index >= len(self.card_list):
+                print('Done going through cards. Starting back at beginning')
+                index = 0
+            if index < 0:
+                print('Done going through cards before beginning. Going to the end.')
+                index = len(self.card_list) - 1
+            curr_card = self.card_list[index]
+            print('Current card:')
+            print(curr_card.get_both_sides())
+            print('Make a selection:')
+            print('[f] edit card front side')
+            print('[b] edit card back side')
+            print('[d] delete card')
+            print('[n] go to next card')
+            print('[p] go to previous card')
+            print('[x] exit editing panel')
+            option = input('What is your selection:\n>')
+
+            if option == 'f':
+                print('Editing front side')
+                print('The current front side is:', self.card_list[index].get_front_side())
+                new_frontside = input('Give the new front side:')
+                self.card_list[index].set_front_side(new_frontside)
+            elif option == 'b':
+                print('Editing back side')
+                print('The current front side is:', self.card_list[index].get_back_side())
+                new_backside = input('Give the new back side:')
+                self.card_list[index].set_back_side(new_backside)
+            elif option == 'd':
+                confirmation = input('Are you sure? [y/N]')
+                if confirmation == 'y':
+                    del self.card_list[index]
+                    print('The card has been deleted.')
+                else:
+                    print('The card has not been deleted.')
+            elif option == 'n':
+                index += 1
+                print('Going to next card...')
+            elif option == 'p':
+                index -= 1
+                print('Going to previous card...')
+            elif option == 'x':
+                break
+
     def list_flashcards(self) -> str:
         list_string: str = ''
         for card in self.card_list:
