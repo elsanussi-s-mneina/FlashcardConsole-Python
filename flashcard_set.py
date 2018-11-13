@@ -1,6 +1,7 @@
 from typing import List
 from flashcard import Flashcard
 import random
+import csv
 
 from practice_session import PracticeSession
 from reversed_practice_session import ReversedPracticeSession
@@ -83,6 +84,15 @@ class FlashcardSet:
             if '\t' in line:
                 flashcard = Flashcard()
                 flashcard.read_as_line(line)
+                self.card_list.append(flashcard)
+
+    def read_as_file_comma_separated(self, file_name: str):
+        with open(file_name, 'r') as csv_file:
+            csv_reader = csv.reader(csv_file)
+            for row in csv_reader:
+                flashcard = Flashcard()
+                flashcard.set_front_side(row[0])
+                flashcard.set_back_side(row[1])
                 self.card_list.append(flashcard)
 
     def start_quiz(self):

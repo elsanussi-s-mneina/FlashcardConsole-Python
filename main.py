@@ -24,7 +24,7 @@ def main() -> None:
         if response == 'n':
             create_new_flashcard_set()
         elif response == 'l':
-            load_flashcard_set()
+            load_flashcard_set_from_csv()
         elif response == 's':
             save_flashcard_set(flashcards)
         elif response == 'sa':
@@ -92,6 +92,17 @@ def load_flashcard_set():
     file_name_chosen = file_name
     already_saved = True
 
+def load_flashcard_set_from_csv():
+    global flashcards
+    global file_name_chosen, already_saved
+    print('loading flashcard set...')
+    file_name = input('Choose a file name to load from.\n>')
+    flashcards = FlashcardSet()
+    flashcards.read_as_file_comma_separated(file_name)
+    print('Done loading file from', file_name)
+    inside_flashcard_set_panel()
+    file_name_chosen = file_name
+    already_saved = True
 
 def save_flashcard_set(flashcard_set: FlashcardSet) -> None:
     global file_name_chosen, already_saved
