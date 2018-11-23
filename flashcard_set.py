@@ -91,8 +91,10 @@ class FlashcardSet:
             csv_reader = csv.reader(csv_file)
             for row in csv_reader:
                 flashcard = Flashcard()
-                flashcard.set_front_side(row[0])
-                flashcard.set_back_side(row[1])
+                if len(row) > 0:
+                    flashcard.set_front_side(row[0])
+                if len(row) > 1:
+                    flashcard.set_back_side(row[1])
                 self.card_list.append(flashcard)
 
     def start_quiz(self):
