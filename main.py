@@ -38,7 +38,7 @@ def main() -> None:
 def create_new_flashcard_set() -> None:
     global flashcards
     print('Creating a new flashcard set...')
-    set_name = input('What do you want to name the new flashcard set?\n')
+    set_name = input('What do you want to name the new flashcard set?\n>')
     flashcards = FlashcardSet()
     print('Creating a new flashcard set named', set_name)
     inside_flashcard_set_panel()
@@ -110,7 +110,7 @@ def save_flashcard_set(flashcard_set: FlashcardSet) -> None:
     if already_saved:
         file_name = file_name_chosen
     else:
-        file_name = input('Choose a file name to save to.')
+        file_name = input('Choose a file name to save to.\n>')
     file = open(file_name, 'w')
     file.write(flashcard_set.print_as_file())
     print('Done writing file to', file_name)
@@ -120,7 +120,7 @@ def save_flashcard_set(flashcard_set: FlashcardSet) -> None:
 
 def save_flashcard_set_as(flashcard_set: FlashcardSet) -> None:
     print('saving flashcard set as...')
-    file_name = input('Choose a file name to save to.')
+    file_name = input('Choose a file name to save to.\n>')
     file = open(file_name, 'w')
     file.write(flashcard_set.print_as_file())
     print('Done writing file to', file_name)
