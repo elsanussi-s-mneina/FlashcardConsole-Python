@@ -15,7 +15,7 @@ class FlashcardSet:
         self.card_list.append(flashcard)
 
     def edit_flashcards(self) -> None:
-        index = 0
+        index: int = 0
         while True:
             if len(self.card_list) == 0:
                 print('please add cards before editing!')
@@ -37,7 +37,7 @@ class FlashcardSet:
             print('[n] go to next card')
             print('[p] go to previous card')
             print('[x] exit editing panel')
-            option = input('What is your selection:\n>')
+            option: str = input('What is your selection:\n>')
 
             if option == 'f':
                 print('Editing front side')
@@ -73,20 +73,20 @@ class FlashcardSet:
         return list_string
 
     def print_as_file(self) -> str:
-        file_contents = ''
+        file_contents: str = ''
         for card in self.card_list:
             file_contents += card.line_for_file() + '\n'
         return file_contents
 
-    def read_as_file(self, file_contents: str):
-        lines = file_contents.split('\n')
+    def read_as_file(self, file_contents: str) -> None:
+        lines: List[str] = file_contents.split('\n')
         for line in lines:
             if '\t' in line:
                 flashcard = Flashcard()
                 flashcard.read_as_line(line)
                 self.card_list.append(flashcard)
 
-    def read_as_file_comma_separated(self, file_name: str):
+    def read_as_file_comma_separated(self, file_name: str) -> None:
         with open(file_name, 'r') as csv_file:
             csv_reader = csv.reader(csv_file)
             for row in csv_reader:
@@ -97,19 +97,19 @@ class FlashcardSet:
                     flashcard.set_back_side(row[1])
                 self.card_list.append(flashcard)
 
-    def start_quiz(self):
+    def start_quiz(self) -> None:
         print('Starting quiz.')
         for card in self.card_list:
             card.ask_for_back_side()
 
-    def start_quiz_with_reversed_sides(self):
+    def start_quiz_with_reversed_sides(self) -> None:
         print('Starting quiz (reversed: back to front).')
         for card in self.card_list:
             card.ask_for_front_side()
 
-    def start_practice(self):
-        option = input('[n] Normal (front to back)\n[r] Reversed (back to front)')
-        practice_session = PracticeSession()
+    def start_practice(self) -> None:
+        option: str = input('[n] Normal (front to back)\n[r] Reversed (back to front)')
+        practice_session: PracticeSession = PracticeSession()
         if option == 'r':
             practice_session = ReversedPracticeSession()
         practice_session.start_practice(self.card_list)

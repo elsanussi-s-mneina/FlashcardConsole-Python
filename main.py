@@ -2,7 +2,7 @@ from flashcard import Flashcard
 from flashcard_set import FlashcardSet
 from typing import List, Optional
 
-flashcards = FlashcardSet()
+flashcards: FlashcardSet = FlashcardSet()
 
 already_saved: bool = False
 file_name_chosen: Optional[str] = None
@@ -20,7 +20,7 @@ def main() -> None:
         print('[sa] save the current set of flashcards in a different file ')
         print('[a] about the program')
         print('[x] exit the program.')
-        response = input('>')
+        response: str = input('>')
         if response == 'n':
             create_new_flashcard_set()
         elif response == 'l':
@@ -54,7 +54,7 @@ def inside_flashcard_set_panel():
         print('[q] start quiz')
         print('[p] start practice')
         print('[x] go back to main menu')
-        option = input('>')
+        option: str = input('>')
         if option == 'a':
             print('Adding a flashcard...')
             front_side = input('Type the text that goes on the front side:\n>')
@@ -82,9 +82,9 @@ def load_flashcard_set():
     global flashcards
     global file_name_chosen, already_saved
     print('loading flashcard set...')
-    file_name = input('Choose a file name to load from.\n>')
+    file_name: str = input('Choose a file name to load from.\n>')
     file = open(file_name, 'r')
-    file_contents = file.read()
+    file_contents: str = file.read()
     flashcards = FlashcardSet()
     flashcards.read_as_file(file_contents)
     print('Done loading file from', file_name)
@@ -120,7 +120,7 @@ def save_flashcard_set(flashcard_set: FlashcardSet) -> None:
 
 def save_flashcard_set_as(flashcard_set: FlashcardSet) -> None:
     print('saving flashcard set as...')
-    file_name = input('Choose a file name to save to.\n>')
+    file_name: str = input('Choose a file name to save to.\n>')
     file = open(file_name, 'w')
     file.write(flashcard_set.print_as_file())
     print('Done writing file to', file_name)
