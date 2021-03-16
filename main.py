@@ -38,13 +38,13 @@ def main() -> None:
 def create_new_flashcard_set() -> None:
     global flashcards
     print('Creating a new flashcard set...')
-    set_name = input('What do you want to name the new flashcard set?\n>')
+    set_name: str = input('What do you want to name the new flashcard set?\n>')
     flashcards = FlashcardSet()
     print('Creating a new flashcard set named', set_name)
     inside_flashcard_set_panel()
 
 
-def inside_flashcard_set_panel():
+def inside_flashcard_set_panel() -> None:
     while True:
         print('What do you want to do?')
         print('[a] Add a flashcard')
@@ -78,7 +78,7 @@ def inside_flashcard_set_panel():
             break
 
 
-def load_flashcard_set():
+def load_flashcard_set() -> None:
     global flashcards
     global file_name_chosen, already_saved
     print('loading flashcard set...')
@@ -92,7 +92,7 @@ def load_flashcard_set():
     file_name_chosen = file_name
     already_saved = True
 
-def load_flashcard_set_from_csv():
+def load_flashcard_set_from_csv() -> None:
     global flashcards
     global file_name_chosen, already_saved
     print('loading flashcard set...')

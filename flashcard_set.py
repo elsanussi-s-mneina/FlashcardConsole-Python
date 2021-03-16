@@ -27,7 +27,7 @@ class FlashcardSet:
             if index < 0:
                 print('Done going through cards before beginning. Going to the end.')
                 index = len(self.card_list) - 1
-            curr_card = self.card_list[index]
+            curr_card: Flashcard = self.card_list[index]
             print('Current card:')
             print(curr_card.get_both_sides())
             print('Make a selection:')
@@ -42,15 +42,15 @@ class FlashcardSet:
             if option == 'f':
                 print('Editing front side')
                 print('The current front side is:', self.card_list[index].get_front_side())
-                new_frontside = input('Give the new front side:')
+                new_frontside: str = input('Give the new front side:')
                 self.card_list[index].set_front_side(new_frontside)
             elif option == 'b':
                 print('Editing back side')
                 print('The current front side is:', self.card_list[index].get_back_side())
-                new_backside = input('Give the new back side:')
+                new_backside: str = input('Give the new back side:')
                 self.card_list[index].set_back_side(new_backside)
             elif option == 'd':
-                confirmation = input('Are you sure? [y/N]')
+                confirmation: str = input('Are you sure? [y/N]')
                 if confirmation == 'y':
                     del self.card_list[index]
                     print('The card has been deleted.')
@@ -68,7 +68,7 @@ class FlashcardSet:
     def list_flashcards(self) -> str:
         list_string: str = ''
         for card in self.card_list:
-            card_string = card.get_both_sides()
+            card_string: str = card.get_both_sides()
             list_string += card_string + '\n'
         return list_string
 
